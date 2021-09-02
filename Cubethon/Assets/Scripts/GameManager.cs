@@ -6,8 +6,13 @@ public class GameManager : MonoBehaviour
 {
     bool gameHasEnded = false;
     public float restartDelay = 1f;
+    public GameObject completeLevelScreen;
 
-    // Update is called once per frame
+    public void CompleteLevel()
+    {
+        completeLevelScreen.SetActive(true);
+    }
+
     public void EndGame()
     {
         if (gameHasEnded == false)
@@ -23,4 +28,6 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    
 }
