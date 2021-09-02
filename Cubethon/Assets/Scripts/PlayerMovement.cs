@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
-    public float forwardForce = 200f;
-    public float sidewaysforce = 500f;
-    public float jumpForce = 1f;
-    public float jumpCoolDown = 25;
+    public float forwardForce;
+    public float sidewaysforce;
+    public float jumpForce;
+    public float jumpCoolDown;
     private float currentJumpCooldown = 0f;
 
     // Start is called before the first frame update
@@ -29,15 +29,20 @@ public class PlayerMovement : MonoBehaviour
         {
         rb.AddForce(-sidewaysforce*Time.deltaTime,0,0, ForceMode.VelocityChange);
         }
-        if (Input.GetKey("space"))
+        /*if (Input.GetKey("space"))
         {
             if (currentJumpCooldown < 0)
             {
-                rb.AddForce(0,jumpForce, 0, ForceMode.VelocityChange);
+                rb.AddForce(0,jumpForce, 0, ForceMode.Impulse);
                 currentJumpCooldown = jumpCoolDown;
             } else {
                 --currentJumpCooldown;
             }
+        }*/
+
+        if (rb.position.y < -1f)
+        {
+            FindObjectOfType<GameManager>().EndGame();
         }
     }
 }
